@@ -1,4 +1,4 @@
-package com.inventary.manufacturinginventoryapi;
+package com.inventory.manufacturinginventoryapi;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
