@@ -26,7 +26,7 @@ public class Producto {
     @Column(name = "precio_venta")
     private BigDecimal precioVenta;
 
-    private Integer existencias;
+    private BigDecimal existencias;
 
     @Column(name = "punto_reorden")
     private Integer puntoReorden;
