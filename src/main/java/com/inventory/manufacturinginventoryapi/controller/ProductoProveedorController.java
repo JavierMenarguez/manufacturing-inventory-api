@@ -7,12 +7,13 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
+/*@RestController
 @RequestMapping("/api/producto-proveedor")
 @RequiredArgsConstructor
+@CrossOrigin(origins = "*")*/
 public class ProductoProveedorController {
 
-    private final ProductoProveedorService service;
+    /*private final ProductoProveedorService service;
 
     // Obtener todos los vínculos (quién le vende a quién)
     @GetMapping
@@ -30,5 +31,5 @@ public class ProductoProveedorController {
     @PostMapping
     public ProductoProveedor vincular(@RequestBody ProductoProveedor productoProveedor) {
         return service.vincular(productoProveedor);
-    }
+    }*/
 }

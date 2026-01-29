@@ -2,6 +2,7 @@ package com.inventory.manufacturinginventoryapi.service;
 
 import com.inventory.manufacturinginventoryapi.model.Categoria;
 import com.inventory.manufacturinginventoryapi.repository.CategoriaRepository;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -32,11 +33,27 @@ public class CategoriaService {
     }
 
     /**
-     * Añade o actualiza una categoria a BD
+     * Añade una categoria a BD
      * @param categoria Categoria a guardar
      * @return Devuelve la categoria guardada
      */
+    @Transactional
     public Categoria guardar(Categoria categoria) {
+        return categoriaRepository.save(categoria);
+    }
+
+    /**
+     * Actualiza una categoria de la BD
+     * @param id ID de la categoria a modificar
+     * @param detalles Datos a sobrescribir
+     * @return Devuelve la cateoria que ha sido modificada
+     */
+    @Transactional
+    public Categoria modificar(Long id, Categoria detalles) {
+        Categoria categoria = categoriaRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Categoría no encontrada"));
+
+        categoria.setNombre(detalles.getNombre());
         return categoriaRepository.save(categoria);
     }
 
@@ -44,7 +61,14 @@ public class CategoriaService {
      * Elimina la categoria filtrada por ID
      * @param id ID de la categoria a eliminar
      */
-    public void eliminar(Long id) {
-        categoriaRepository.deleteById(id);
+    @Transactional
+    public void borrar(Long id) {
+        // Validación Pro: ¿Tiene productos asociados?
+        if (categoriaRepository.existsById(id)) {
+            categoriaRepository.deleteById(id);
+        } else {
+            throw new RuntimeException("No existe la categoría");
+        }
     }
+
 }

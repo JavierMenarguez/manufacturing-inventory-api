@@ -15,11 +15,13 @@ public class Proveedor {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String nombre;
 
+    @Column(length = 20)
     private String telefono;
 
+    @Column(length = 150)
     private String email;
 
     private String direccion;

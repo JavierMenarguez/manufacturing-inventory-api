@@ -19,7 +19,7 @@ public class MovimientoService {
     private final ProductoRepository productoRepository;
 
     /**
-     * Registra un movimiento nuevo en el inventario
+     * Registra un movimiento en el inventario
      * @param movimiento Movimiento a crear en BD
      * @return Devuele el movimiento que fue creado
      */

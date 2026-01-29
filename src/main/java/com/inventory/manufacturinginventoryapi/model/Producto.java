@@ -3,6 +3,8 @@ package com.inventory.manufacturinginventoryapi.model;
 import jakarta.persistence.*;
 import lombok.*;
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "productos")
@@ -15,24 +17,29 @@ public class Producto {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(unique = true, nullable = false)
+    @Column(unique = true, length = 100)
     private String sku;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String nombre;
 
+    @Column(columnDefinition = "TEXT")
     private String descripcion;
 
-    @Column(name = "precio_venta")
+    @Column(name = "precio_venta", precision = 10, scale = 2)
     private BigDecimal precioVenta;
 
+    @Column(precision = 10, scale = 2)
     private BigDecimal existencias;
+
+    @Column(name = "unidad_medida")
+    private String unidadMedida;
 
     @Column(name = "punto_reorden")
     private Integer puntoReorden;
 
-    @Column(name = "tipo_producto")
-    private String tipoProducto; // MATERIA_PRIMA o FABRICADO
+    @Column(name = "tipo_producto",length = 100)
+    private String tipoProducto; // MATERIA_PRIMA o PRODUCTO FINAL
 
     @Column(nullable = false)
     private Boolean activo = true;
@@ -41,5 +48,12 @@ public class Producto {
     @JoinColumn(name = "categoria_id")
     private Categoria categoria;
 
+    @ManyToMany
+    @JoinTable(
+            name = "producto_proveedor",
+            joinColumns = @JoinColumn(name = "producto_id"),
+            inverseJoinColumns = @JoinColumn(name = "proveedor_id")
+    )
+    private List<Proveedor> proveedores = new ArrayList<>();
 
 }

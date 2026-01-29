@@ -22,7 +22,7 @@ public class BomEstructura {
     @JoinColumn(name = "componente_id")
     private Producto componente;
 
-    @Column(name = "cantidad_necesaria", precision = 10, scale = 2)
+    @Column(name = "cantidad_necesaria", precision = 10, scale = 3)
     private BigDecimal cantidadNecesaria;
 
     @Column(name = "unidad_medida")

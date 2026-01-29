@@ -11,6 +11,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/movimientos")
 @AllArgsConstructor
+@CrossOrigin(origins = "*")
 public class MovimientoController {
 
     private final MovimientoService movimientoService;
@@ -21,7 +22,7 @@ public class MovimientoController {
     }
 
     @PostMapping
-    public ResponseEntity<?> crear(@RequestBody MovimientoInventario movimiento) {
+    public ResponseEntity<?> registrarMovimiento(@RequestBody MovimientoInventario movimiento) {
         try {
             return ResponseEntity.ok(movimientoService.registrar(movimiento));
         } catch (RuntimeException e) {

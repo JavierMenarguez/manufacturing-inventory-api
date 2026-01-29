@@ -9,7 +9,6 @@ import java.util.List;
 
 @Repository
 public interface BomEstructuraRepository extends JpaRepository<BomEstructura, BomId>{
-
-    // Consulta a BD personalizada
+    void deleteByProductoFinalId(Long productoFinalId);
     List<BomEstructura> findByIdProductoFinalId(Long productoFinalId);
 }
